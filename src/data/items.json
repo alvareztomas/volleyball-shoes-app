@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Asics Gel Rocket 8",
+    "img": "././public/images/shoe2.jpg",
+    "price": 100,
+    "size": "M",
+    "color": "red",
+    "description": "This is a description of the product",
+    "quantity": 1
+  },
+  {
+    "id": 2,
+    "name": "Asics Sky FF Tokyo",
+    "img": "././public/images/shoe1.jpg",
+    "price": 100,
+    "size": "M",
+    "color": "red",
+    "description": "This is a description of the product",
+    "quantity": 1
+  },
+  {
+    "id": 3,
+    "name": "Asics Rebound 6",
+    "img": "././public/images/shoe3.jpg",
+    "price": 100,
+    "size": "M",
+    "color": "red",
+    "description": "This is a description of the product",
+    "quantity": 1
+  },
+  {
+    "id": 4,
+    "name": "Asics Grand Court",
+    "img": "././public/images/shoe4.jpg",
+    "price": 100,
+    "size": "M",
+    "color": "red",
+    "description": "This is a description of the product",
+    "quantity": 1
+  }
+]
