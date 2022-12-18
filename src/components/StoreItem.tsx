@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import { formatCurrency } from "../utils/formatCurrency";
 import Button from "@mui/material/Button";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 
 interface StoreItemProps {
   id: number;
@@ -14,7 +15,7 @@ interface StoreItemProps {
   size: string;
   color: string;
   description: string;
-  quantity: number;
+  stock: number;
 }
 
 const StyledCard = styled(Card)`
@@ -37,7 +38,14 @@ const StyledImg = styled.img`
 `;
 
 const StoreItem = (props: StoreItemProps) => {
-  const itemsInCart = 0;
+  const {
+    getItemQuantity,
+    increaseCartQuantity,
+    decreaseCartQuantity,
+    removeFromCart,
+  } = useShoppingCart();
+
+  const itemsInCart = getItemQuantity(props.id);
 
   return (
     <StyledCard>
@@ -51,12 +59,15 @@ const StoreItem = (props: StoreItemProps) => {
         <Typography>Color: {props.color}</Typography>
       </Box>
       <Box display="flex" justifyContent="space-between">
-        <Typography>Stock: {props.quantity}</Typography>
+        <Typography>Stock: {props.stock}</Typography>
         <Typography>Price: {formatCurrency(props.price)}</Typography>
       </Box>
       <Box>
         {itemsInCart === 0 ? (
-          <Button variant="outlined" sx={{ margin: "20px 0", width: "100%" }}>
+          <Button
+            onClick={() => increaseCartQuantity(props.id)}
+            variant="outlined"
+            sx={{ margin: "20px 0", width: "100%" }}>
             Add to Cart +
           </Button>
         ) : (
@@ -71,11 +82,22 @@ const StoreItem = (props: StoreItemProps) => {
               alignItems="center"
               justifyContent="center"
               gap={3}>
-              <Button variant="outlined">-</Button>
+              <Button
+                variant="outlined"
+                onClick={() => decreaseCartQuantity(props.id)}>
+                -
+              </Button>
               <Typography variant="h6">{itemsInCart} in cart</Typography>
-              <Button variant="outlined">+</Button>
+              <Button
+                variant="outlined"
+                onClick={() => increaseCartQuantity(props.id)}>
+                +
+              </Button>
             </Box>
-            <Button variant="outlined" color="warning">
+            <Button
+              onClick={() => removeFromCart(props.id)}
+              variant="outlined"
+              color="warning">
               Remove
             </Button>
           </Box>
